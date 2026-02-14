@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Valentine</title>
+<style>
+  :root{--pink:#ff6fa3;}
+  *{box-sizing:border-box}
+  body{
+    margin:0; height:100vh; display:flex; align-items:center; justify-content:center;
+    background:linear-gradient(180deg,#ff9ec2,var(--pink));
+    font-family:Arial,Helvetica,sans-serif; color:#fff; text-align:center; overflow:hidden;
+  }
+  .scene{position:absolute; opacity:0; transform:translateY(20px); transition:opacity .6s ease, transform .6s ease}
+  .show{opacity:1; transform:translateY(0)}
+  h1{font-size:2.2rem; margin:.2em 0}
+  p{font-size:1.2rem; margin:.4em 0}
+  .btn{
+    margin-top:20px; padding:12px 22px; border-radius:30px; border:2px solid #fff; background:transparent; color:#fff; cursor:pointer; font-size:1rem;
+    transition:background .25s,color .25s, transform .15s;
+  }
+  .btn:hover{background:#fff;color:#ff4f8f;transform:scale(1.05)}
+</style>
+</head>
+<body>
+
+<!-- S1 -->
+<div id="s1" class="scene">
+  <h1>hey <span id="name">aadhya</span></h1>
+  <p>i really like your name btw!</p>
+</div>
+
+<!-- S2 -->
+<div id="s2" class="scene">
+  <p>it's valentine!!! :D</p>
+</div>
+
+<!-- S3 -->
+<div id="s3" class="scene">
+  <p>I was gonna send you a "happy valentine's day baby!! I love you babyyy..." message</p>
+</div>
+
+<!-- S4 -->
+<div id="s4" class="scene">
+  <p>that's what I was going to do.</p>
+</div>
+
+<!-- S5 (fixed order) -->
+<div id="s5" class="scene">
+  <p>but then I stopped.</p>
+  <p>I realised I wanted to do something <b>special</b></p>
+  <p>because...</p>
+</div>
+
+<!-- S6 -->
+<div id="s6" class="scene">
+  <h1>You are Special :)</h1>
+</div>
+
+<!-- S7 new -->
+<div id="s7" class="scene">
+  <p>so I made a game for you</p><p>hope you like it 💙</p>
+  <button class="btn" onclick="goGame()">press to play</button>
+</div>
+
+<script>
+const order=["s1","s2","s3","s4","s5","s6","s7"];
+const delays=[5000,3000,5000,5000,5000,3000,0]; // reduced gap between s4 & s6 via shorter s5/s6
+
+let i=0;
+function showNext(){
+  if(i>0) document.getElementById(order[i-1]).classList.remove("show");
+  const el=document.getElementById(order[i]);
+  if(!el) return;
+  el.classList.add("show");
+  if(delays[i]!==0){
+    setTimeout(()=>{i++;showNext();},delays[i]);
+  }
+}
+setTimeout(showNext,600);
+
+function goGame(){
+  window.location.href="https://apache2op.github.io/v-memory-game/"; // replace with your game link
+}
+</script>
+</body>
+</html>
